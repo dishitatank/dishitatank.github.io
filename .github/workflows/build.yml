@@ -37,4 +37,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          publish_branch: gh-pages  # Deploy to a separate branch
           keep_files: true
