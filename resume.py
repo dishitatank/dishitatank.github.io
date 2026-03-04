@@ -70,9 +70,13 @@ def bul(text):
     return Paragraph(f"\u2022  {text}", s_bul)
 
 doc = SimpleDocTemplate(
-    OUTPUT, pagesize=A4,
-    leftMargin=20*mm, rightMargin=20*mm,
-    topMargin=16*mm, bottomMargin=16*mm
+    OUTPUT,
+    pagesize=A4,
+    title="DishitaTank_Resume", # Add this line
+    leftMargin=20*mm,
+    rightMargin=20*mm,
+    topMargin=16*mm,
+    bottomMargin=16*mm
 )
 PW = W - 40*mm
 story = []
