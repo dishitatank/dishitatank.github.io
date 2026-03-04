@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dishita Tank — Resume</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0f0f0;
+      font-family: Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      background: #0A0A0A;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header span { font-size: 14px; letter-spacing: 0.5px; }
+    header a {
+      background: #fff;
+      color: #0A0A0A;
+      padding: 7px 18px;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 2px;
+    }
+    header a:hover { background: #ddd; }
+    .pdf-wrapper {
+      width: 100%;
+      max-width: 900px;
+      flex: 1;
+      padding: 24px 16px;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span>DISHITA RUPESH TANK</span>
+    <a href="DishitaTank_Resume.pdf" download>Download PDF</a>
+  </header>
+  <div class="pdf-wrapper">
+    <iframe src="DishitaTank_Resume.pdf"></iframe>
+  </div>
+</body>
+</html>
+EOF

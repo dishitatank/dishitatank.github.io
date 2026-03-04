@@ -1,0 +1,41 @@
+name: Build Resume PDF
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install reportlab
+
+      - name: Install Verdana font
+        run: |
+          sudo apt-get install -y ttf-mscorefonts-installer fontconfig
+          sudo fc-cache -f -v
+
+      - name: Update font path for Linux
+        run: |
+          sed -i 's|/System/Library/Fonts/Supplemental/|/usr/share/fonts/truetype/msttcorefonts/|g' resume.py
+
+      - name: Run resume script
+        run: python resume.py
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          keep_files: true
