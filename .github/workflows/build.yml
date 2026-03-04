@@ -23,12 +23,11 @@ jobs:
 
       - name: Install Verdana font
         run: |
+          # Automatically accept the MS EULA to avoid the build hanging
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt-get update
           sudo apt-get install -y ttf-mscorefonts-installer fontconfig
           sudo fc-cache -f -v
-
-      - name: Update font path for Linux
-        run: |
-          sed -i 's|/System/Library/Fonts/Supplemental/|/usr/share/fonts/truetype/msttcorefonts/|g' resume.py
 
       - name: Run resume script
         run: python resume.py

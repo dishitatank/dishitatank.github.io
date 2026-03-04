@@ -1,3 +1,5 @@
+import platform
+import os
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib import colors
@@ -10,9 +12,24 @@ from reportlab.platypus import (
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-pdfmetrics.registerFont(TTFont("Verdana",        "/System/Library/Fonts/Supplemental/Verdana.ttf"))
-pdfmetrics.registerFont(TTFont("Verdana-Bold",   "/System/Library/Fonts/Supplemental/Verdana Bold.ttf"))
-pdfmetrics.registerFont(TTFont("Verdana-Italic", "/System/Library/Fonts/Supplemental/Verdana Italic.ttf"))
+# --- DYNAMIC FONT CONFIGURATION ---
+if platform.system() == "Linux":
+    # Paths for GitHub Actions (Ubuntu)
+    font_dir = "/usr/share/fonts/truetype/msttcorefonts/"
+    v_reg = os.path.join(font_dir, "Verdana.ttf")
+    v_bold = os.path.join(font_dir, "Verdana_Bold.ttf")
+    v_ital = os.path.join(font_dir, "Verdana_Italic.ttf")
+else:
+    # Paths for your Local Mac
+    font_dir = "/System/Library/Fonts/Supplemental/"
+    v_reg = os.path.join(font_dir, "Verdana.ttf")
+    v_bold = os.path.join(font_dir, "Verdana Bold.ttf")
+    v_ital = os.path.join(font_dir, "Verdana Italic.ttf")
+
+pdfmetrics.registerFont(TTFont("Verdana",        v_reg))
+pdfmetrics.registerFont(TTFont("Verdana-Bold",   v_bold))
+pdfmetrics.registerFont(TTFont("Verdana-Italic", v_ital))
+# -----------------------------------------------
 
 OUTPUT = "DishitaTank_Resume.pdf"
 W, H = A4
